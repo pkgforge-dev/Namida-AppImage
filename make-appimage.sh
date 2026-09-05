@@ -13,5 +13,5 @@ export DESKTOP=./AppDir/share/applications/namida.desktop
 
 export PATH_MAPPING='/usr/lib/wpe-webkit-2.0:${SHARUN_DIR}/lib/wpe-webkit-2.0'
 
-quick-sharun ./AppDir/namida ./AppDir/bin/*
+quick-sharun ./AppDir/namida ./AppDir/bin/* /usr/lib/wpe-webkit-2.0
 quick-sharun --make-appimage
