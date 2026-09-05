@@ -19,4 +19,10 @@ export PATH_MAPPING='
 '
 
 quick-sharun ./AppDir/namida ./AppDir/bin/*
+
+chmod +x \
+	./AppDir/lib/WPENetworkProcess \
+	./AppDir/lib/WPEWebProcess \
+	./AppDir/lib/WPEGPUProcess
+
 quick-sharun --make-appimage
