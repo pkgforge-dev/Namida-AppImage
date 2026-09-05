@@ -33,3 +33,13 @@ curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
 
 mkdir -p ./AppDir/
 tar -xvzf /tmp/temp.tar.gz -C ./AppDir/
+
+# THIS SHOULDN'T BE EVEN NECESSARY ACCORDING TO THEIR README.md BUT ITS BROKEN
+login_link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith("_login.linux.tar.gz")) | .browser_download_url')
+
+curl -sSfL --retry 30 --retry-connrefused "$login_link" -o /tmp/login.tar.gz
+
+tar -xvzf /tmp/login.tar.gz -C ./AppDir/ lib/libflutter_inappwebview_linux_plugin.so
+
+mkdir -p ./AppDir/lib/wpe-webkit-2.0/
+cp /usr/lib/wpe-webkit-2.0/WPE*Process ./AppDir/lib/wpe-webkit-2.0/
