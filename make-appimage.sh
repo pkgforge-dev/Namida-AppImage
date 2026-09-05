@@ -11,13 +11,6 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=./AppDir/share/icons/namida_256.png
 export DESKTOP=./AppDir/share/applications/namida.desktop
 
-export PATH_MAPPING='
-/usr/lib/wpe-webkit-2.0/WPENetworkProcess:${SHARUN_DIR}/bin/WPENetworkProcess
-/usr/lib/wpe-webkit-2.0/WPEWebProcess:${SHARUN_DIR}/bin/WPEWebProcess
-/usr/lib/wpe-webkit-2.0/WPEGPUProcess:${SHARUN_DIR}/bin/WPEGPUProcess
-/usr/lib/wpe-webkit-2.0/injected-bundle/libWPEInjectedBundle.so:${SHARUN_DIR}/lib/libWPEInjectedBundle.so
-'
-
 quick-sharun \
 	./AppDir/namida \
 	./AppDir/bin/* \
@@ -25,4 +18,8 @@ quick-sharun \
 	/usr/lib/wpe-webkit-2.0/WPEWebProcess \
 	/usr/lib/wpe-webkit-2.0/WPEGPUProcess \
 	/usr/lib/wpe-webkit-2.0/injected-bundle/libWPEInjectedBundle.so
+
+ln -s ../bin ./AppDir/lib/wpe-webkit-2.0
+echo 'WEBKIT_INJECTED_BUNDLE_PATH=${SHARUN_DIR}/lib' >> ./AppDir/.env
+
 quick-sharun --make-appimage
