@@ -6,21 +6,30 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-# pacman -Syu --noconfirm PACKAGESHERE
+pacman -Syu --noconfirm mpv wpewebkit
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano
 
-# Comment this out if you need an AUR package
-#make-aur-package PACKAGENAME
+echo "Getting binary..."
+echo "---------------------------------------------------------------"
 
-# If the application needs to be manually built that has to be done down here
+case "$ARCH" in
+	x86_64)  farch=x64;;
+	aarch64) farch=arm;;
+esac
 
-# if you also have to make nightly releases check for DEVEL_RELEASE = 1
-#
-# if [ "${DEVEL_RELEASE-}" = 1 ]; then
-# 	nightly build steps
-# else
-# 	regular build steps
-# fi
+if [ "${DEVEL_RELEASE-}" = 1 ]; then
+    RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida-snapshots/releases/latest)
+else
+    exit 1
+fi
+
+echo "$RELEASE" | jq -r '.tag_name' > ~/version
+link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | select(.name | contains("_login") | not) | .browser_download_url')
+
+curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
+
+mkdir -p ./AppDir/
+tar -xvzf /tmp/temp.tar.gz -C ./AppDir/

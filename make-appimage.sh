@@ -3,22 +3,13 @@
 set -eu
 
 ARCH=$(uname -m)
-VERSION=$(pacman -Q PACKAGENAME | awk '{print $2; exit}') # example command to get version of application here
-export ARCH VERSION
+export ARCH
 export OUTPATH=./dist
+export MAIN_BIN=./AppDir/namida
 export ADD_HOOKS="self-updater.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}|latest|*$ARCH.AppImage.zsync"
-export ICON=PATH_OR_URL_TO_ICON
-export DESKTOP=PATH_OR_URL_TO_DESKTOP_ENTRY
+export ICON=./AppDir/share/icons/namida_256.png
+export DESKTOP=./AppDir/share/applications/namida.desktop
 
-# Deploy dependencies
-quick-sharun /PATH/TO/BINARY_AND_LIBRARIES_HERE
-
-# Additional changes can be done in between here
-
-# Turn AppDir into AppImage
+quick-sharun ./AppDir/namida ./AppDir/bin/* /usr/bin/mpv /usr/lib/libWPEWebKit-2.0.so* /usr/lib/wpe-webkit-2.0/WPE* /usr/lib/wpe-webkit-2.0/injected-bundle/libWPEInjectedBundle.so*
 quick-sharun --make-appimage
-
-# Test the app for 12 seconds, if the test fails due to the app
-# having issues running in the CI use --simple-test instead
-quick-sharun --test ./dist/*.AppImage
