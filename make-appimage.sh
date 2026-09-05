@@ -11,5 +11,5 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=./AppDir/share/icons/namida_256.png
 export DESKTOP=./AppDir/share/applications/namida.desktop
 
-quick-sharun ./AppDir/namida ./AppDir/bin/* /usr/lib/wpe-webkit-2.0/injected-bundle/libWPEInjectedBundle.so
+quick-sharun ./AppDir/namida ./AppDir/bin/* ./AppDir/lib/wpe-webkit-2.0/* /usr/lib/wpe-webkit-2.0/injected-bundle/libWPEInjectedBundle.so
 quick-sharun --make-appimage
