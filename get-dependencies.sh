@@ -40,6 +40,3 @@ login_link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith("_logi
 curl -sSfL --retry 30 --retry-connrefused "$login_link" -o /tmp/login.tar.gz
 
 tar -xvzf /tmp/login.tar.gz -C ./AppDir/ ./lib/libflutter_inappwebview_linux_plugin.so
-
-mkdir -p ./AppDir/lib/wpe-webkit-2.0/
-cp /usr/lib/wpe-webkit-2.0/WPE*Process ./AppDir/lib/wpe-webkit-2.0/
