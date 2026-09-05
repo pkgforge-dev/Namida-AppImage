@@ -11,5 +11,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=./AppDir/share/icons/namida_256.png
 export DESKTOP=./AppDir/share/applications/namida.desktop
 
+export PATH_MAPPING='/usr/lib/wpe-webkit-2.0:${SHARUN_DIR}/lib/wpe-webkit-2.0'
+
 quick-sharun ./AppDir/namida ./AppDir/bin/*
 quick-sharun --make-appimage
