@@ -6,12 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm \
-	mpv \
-	libxslt \
-	harfbuzz-icu \
-	libavif \
-	hyphen
+pacman -Syu --noconfirm mpv libxslt harfbuzz-icu libavif hyphen # wpewebkit
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
