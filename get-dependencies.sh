@@ -27,7 +27,7 @@ else
 fi
 
 echo "$RELEASE" | jq -r '.tag_name' > ~/version
-link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | select(.name | contains("_login") | not) | .browser_download_url')
+link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | select(.name | contains("_login")) | .browser_download_url')
 
 curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
 
