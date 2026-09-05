@@ -6,7 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-# pacman -Syu --noconfirm mpv wpewebkit
+pacman -Syu --noconfirm mpv
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
