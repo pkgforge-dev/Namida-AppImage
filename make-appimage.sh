@@ -13,5 +13,5 @@ export DESKTOP=./AppDir/bin/share/applications/namida.desktop
 
 echo "WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1" >> ./AppDir/.env
 
-quick-sharun ./AppDir/* /usr/lib/wpe-webkit-2.0
+quick-sharun ./AppDir/bin/* /usr/lib/wpe-webkit-2.0
 quick-sharun --make-appimage
