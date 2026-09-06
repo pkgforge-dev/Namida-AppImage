@@ -30,14 +30,16 @@ fi
 echo "$RELEASE" | jq -r '.tag_name' > ~/version
 link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | select(.name | contains("_login") | not) | .browser_download_url')
 
+mkdir -p ./AppDir/bin
 curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
+tar -xvzf /tmp/temp.tar.gz -C ./AppDir/bin
 
-mkdir -p ./AppDir/
-tar -xvzf /tmp/temp.tar.gz -C ./AppDir/
+cp -v ./AppDir/bin/share/icons/namida_256.png ./AppDir
+cp -v ./AppDir/bin/share/applications/namida.desktop ./AppDir
 
 # THIS SHOULDN'T BE EVEN NECESSARY ACCORDING TO THEIR README.md BUT ITS BROKEN
 login_link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith("_login.linux.tar.gz")) | .browser_download_url')
 
 curl -sSfL --retry 30 --retry-connrefused "$login_link" -o /tmp/login.tar.gz
 
-tar -xvzf /tmp/login.tar.gz -C ./AppDir/ ./lib/libflutter_inappwebview_linux_plugin.so
+tar -xvzf /tmp/login.tar.gz -C ./AppDir/bin ./lib/libflutter_inappwebview_linux_plugin.so
