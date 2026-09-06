@@ -31,12 +31,12 @@ link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.
 
 curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
 
-mkdir -p ./AppDir/bin
-tar -xvzf /tmp/temp.tar.gz -C ./AppDir/bin
+mkdir -p ./AppDir/
+tar -xvzf /tmp/temp.tar.gz -C ./AppDir/
 
 # THIS SHOULDN'T BE EVEN NECESSARY ACCORDING TO THEIR README.md BUT ITS BROKEN
 login_link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith("_login.linux.tar.gz")) | .browser_download_url')
 
 curl -sSfL --retry 30 --retry-connrefused "$login_link" -o /tmp/login.tar.gz
 
-tar -xvzf /tmp/login.tar.gz -C ./AppDir/bin ./lib/libflutter_inappwebview_linux_plugin.so
+tar -xvzf /tmp/login.tar.gz -C ./AppDir/ ./lib/libflutter_inappwebview_linux_plugin.so
