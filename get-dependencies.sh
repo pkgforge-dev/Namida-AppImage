@@ -34,6 +34,9 @@ mkdir -p ./AppDir/bin
 curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
 tar -xvzf /tmp/temp.tar.gz -C ./AppDir/bin
 
+# upstream binaries are lacking the executable bit
+chmod +x ./AppDir/bin/bin/*
+
 cp -v ./AppDir/bin/share/icons/namida_256.png ./AppDir
 cp -v ./AppDir/bin/share/applications/namida.desktop ./AppDir
 
