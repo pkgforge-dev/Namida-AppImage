@@ -15,15 +15,16 @@ get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
 echo "Getting binary..."
 echo "---------------------------------------------------------------"
 
-case "$ARCH" in
-	x86_64)  farch=x64;;
-	aarch64) farch=arm;;
-esac
+# case "$ARCH" in
+# 	x86_64)  farch=x64;;
+# 	aarch64) farch=arm;;
+# esac
 
 if [ "${DEVEL_RELEASE-}" = 1 ]; then
     RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida-snapshots/releases/latest)
 else
-    exit 1
+    # RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida/releases/latest)
+    RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida-snapshots/releases/latest)
 fi
 
 echo "$RELEASE" | jq -r '.tag_name' > ~/version
