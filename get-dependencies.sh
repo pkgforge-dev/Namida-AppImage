@@ -37,5 +37,5 @@ tar -xvzf /tmp/temp.tar.gz -C ./AppDir/bin
 # upstream binaries are lacking the executable bit
 chmod +x ./AppDir/bin/bin/*
 
-cp -v ./AppDir/bin/share/icons/namida_256.png ./AppDir
-cp -v ./AppDir/bin/share/applications/namida.desktop ./AppDir
+cp -v ./AppDir/bin/share/icons/hicolor/512x512/apps/namida.png ./AppDir
+cp -v ./AppDir/bin/share/applications/com.msob7y.namida.desktop ./AppDir
