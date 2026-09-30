@@ -15,15 +15,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 rm -f ./AppDir/bin/bin/ffmpeg ./AppDir/bin/bin/ffprobe
 
 # Deploy dependencies
-quick-sharun \
-	./AppDir/bin/*      \
-	/usr/bin/ffmpeg     \
-	/usr/bin/ffprobe    \
-	/usr/lib/libmpv.so* \
-	/usr/lib/wpe-webkit-2.0
-
-# FIXME: Temporary measure till quick-sharun adds support for wpewebkit sandboxing
-echo "WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1" >> ./AppDir/.env
+quick-sharun ./AppDir/bin/* /usr/bin/ffmpeg /usr/bin/ffprobe /usr/lib/libmpv.so*
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
