@@ -6,7 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm mpv wpewebkit
+pacman -Syu --noconfirm mpv webkit2gtk-4.1
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
@@ -39,10 +39,3 @@ chmod +x ./AppDir/bin/bin/*
 
 cp -v ./AppDir/bin/share/icons/namida_256.png ./AppDir
 cp -v ./AppDir/bin/share/applications/namida.desktop ./AppDir
-
-# THIS SHOULDN'T BE EVEN NECESSARY ACCORDING TO THEIR README.md BUT ITS BROKEN
-login_link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith("_login.linux.tar.gz")) | .browser_download_url')
-
-curl -sSfL --retry 30 --retry-connrefused "$login_link" -o /tmp/login.tar.gz
-
-tar -xvzf /tmp/login.tar.gz -C ./AppDir/bin ./lib/libflutter_inappwebview_linux_plugin.so
