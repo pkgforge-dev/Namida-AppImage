@@ -10,7 +10,7 @@ pacman -Syu --noconfirm mpv webkit2gtk-4.1
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
-get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini
+get-debloated-pkgs --add-common --prefer-nano ffmpeg-mini webkit2gtk-4.1-mini
 
 echo "Getting binary..."
 echo "---------------------------------------------------------------"
