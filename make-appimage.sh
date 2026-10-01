@@ -15,7 +15,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 rm -f ./AppDir/bin/bin/ffmpeg ./AppDir/bin/bin/ffprobe
 
 # Deploy dependencies
-quick-sharun ./AppDir/bin/* /usr/bin/ffmpeg /usr/bin/ffprobe /usr/lib/libmpv.so*
+quick-sharun ./AppDir/bin/* /usr/bin/ffmpeg /usr/bin/ffprobe /usr/lib/libmpv.so* /usr/lib/libwebkit2gtk-4.1.so*
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
