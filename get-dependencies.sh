@@ -23,8 +23,7 @@ echo "---------------------------------------------------------------"
 if [ "${DEVEL_RELEASE-}" = 1 ]; then
     RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida-snapshots/releases/latest)
 else
-    # RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida/releases/latest)
-    RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida-snapshots/releases/latest)
+    RELEASE=$(curl -fsSL https://api.github.com/repos/namidaco/namida/releases/latest)
 fi
 
 echo "$RELEASE" | jq -r '.tag_name' > ~/version
