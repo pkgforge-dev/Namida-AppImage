@@ -27,14 +27,11 @@ else
 fi
 
 echo "$RELEASE" | jq -r '.tag_name' > ~/version
-link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | select(.name | contains("_login") | not) | .browser_download_url')
+link=$(echo "$RELEASE" | jq -r '.assets[] | select(.name | endswith(".linux.tar.gz")) | .browser_download_url')
 
 mkdir -p ./AppDir/bin
 curl -sSfL --retry 30 --retry-connrefused "$link" -o /tmp/temp.tar.gz
 tar -xvzf /tmp/temp.tar.gz -C ./AppDir/bin
-
-# upstream binaries are lacking the executable bit
-chmod +x ./AppDir/bin/bin/*
 
 cp -v ./AppDir/bin/share/icons/hicolor/512x512/apps/namida.png ./AppDir
 cp -v ./AppDir/bin/share/applications/com.msob7y.namida.desktop ./AppDir
