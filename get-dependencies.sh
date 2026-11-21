@@ -6,7 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm mpv webkit2gtk-4.1
+pacman -Syu --noconfirm mpv libepoxy webkit2gtk-4.1
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
